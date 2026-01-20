@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-test-service
+  labels:
+    app: docker-test-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: docker-test-service
+  template:
+    metadata:
+      labels:
+        app: docker-test-service
+    spec:
+      containers:
+        - name: docker-test-service
+          image: springboot-k8-demo:1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
